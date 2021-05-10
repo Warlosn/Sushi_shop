@@ -5,12 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sushi_shop"
         mc:Ignorable="d"
-        Title="First" Height="450" Width="800">
-    <Grid>
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="authentication" Height="650" Width="800">
+    <Grid Background="#EF6A17">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="599*"/>
-            <ColumnDefinition Width="195*"/>
+            <ColumnDefinition Width="211*"/>
+            <ColumnDefinition Width="186*"/>
         </Grid.ColumnDefinitions>
+        <Border MinWidth="400" Margin="15,59,14.6,59" Background="White"  VerticalAlignment="Center" Padding="30" MaxWidth="550" CornerRadius="20" Grid.ColumnSpan="2">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="50" Color="Gray" ShadowDepth="10"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Welcom to the sushi shop" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 20"/>
+                <Grid Margin="0 0 0 20">
+                    <Button HorizontalAlignment="Left" Content="Sign up"/>
+                    <Button HorizontalAlignment="Right" Content="Sign in" Style="{StaticResource MaterialDesignFlatButton}"/>
+                </Grid>
+                <TextBox x:Name="textBoxEmail" materialDesign:HintAssist.Hint="enter your email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="textBoxName" materialDesign:HintAssist.Hint="enter your name" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="textBoxLastName" materialDesign:HintAssist.Hint="enter your last name" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="textBoxAddress" materialDesign:HintAssist.Hint="enter your address" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="textBoxPhoneNumber" materialDesign:HintAssist.Hint="enter your phone number" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox x:Name="passwordBox" materialDesign:HintAssist.Hint="enter your password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <PasswordBox x:Name="passwordBox2" materialDesign:HintAssist.Hint="repeat your password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <Button Content="register" Margin="0 20" Click="Button_Register"/>
+            </StackPanel>
 
+        </Border>
     </Grid>
 </Window>
