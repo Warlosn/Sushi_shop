@@ -20,12 +20,12 @@ namespace Sushi_shop
     /// </summary>
     public partial class MainWindow : Window
     {
-        ApplicationContex db = new ApplicationContex();
+        sushiDBEntities db;
 
         public MainWindow()
         {
             InitializeComponent();
-
+            db = new sushiDBEntities();
      
         }
 
@@ -63,7 +63,7 @@ namespace Sushi_shop
                 passwordBox2.ToolTip = "";
 
                 MessageBox.Show("registration complete");
-                Client client = new Client(userEmail, userName, userLastName, userAddress, userPhone, userPassword);
+                Clients client = new Clients(userEmail, userName, userLastName, userAddress, userPhone, userPassword);
                 db.Clients.Add(client);
                 db.SaveChanges();
             }

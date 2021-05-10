@@ -39,3 +39,4 @@ D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\bin\Debug\EntityFramework.dll
 D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\bin\Debug\EntityFramework.SqlServer.dll
 D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\bin\Debug\EntityFramework.xml
 D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\bin\Debug\EntityFramework.SqlServer.xml
+D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\Sushi_shop_Content.g.cs
