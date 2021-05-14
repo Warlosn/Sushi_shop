@@ -19,8 +19,8 @@
             <StackPanel>
                 <TextBlock Text="Welcom to the sushi shop" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 20"/>
                 <Grid Margin="0 0 0 20">
-                    <Button HorizontalAlignment="Left" Content="Sign up"/>
-                    <Button HorizontalAlignment="Right" Content="Sign in" Style="{StaticResource MaterialDesignFlatButton}"/>
+                    <Button HorizontalAlignment="Left" Content="Sign up" Style="{StaticResource MaterialDesignFlatButton}"/>
+                    <Button HorizontalAlignment="Right" Content="Sign in" Click="To_Sign_In_Window"/>
                 </Grid>
                 <TextBox x:Name="textBoxEmail" materialDesign:HintAssist.Hint="enter your email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <TextBox x:Name="textBoxName" materialDesign:HintAssist.Hint="enter your name" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>

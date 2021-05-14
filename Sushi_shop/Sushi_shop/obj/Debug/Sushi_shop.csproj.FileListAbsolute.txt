@@ -40,3 +40,7 @@ D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\bin\Debug\EntityFramework.SqlServer.d
 D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\bin\Debug\EntityFramework.xml
 D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\bin\Debug\EntityFramework.SqlServer.xml
 D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\Sushi_shop_Content.g.cs
+D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\loginWindow.g.cs
+D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\loginWindow.baml
+D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\SushiWindow.g.cs
+D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\SushiWindow.baml

@@ -20,13 +20,13 @@ namespace Sushi_shop
     /// </summary>
     public partial class MainWindow : Window
     {
-        sushiDBEntities db;
+        readonly sushiDBEntities db;
 
         public MainWindow()
         {
             InitializeComponent();
             db = new sushiDBEntities();
-     
+
         }
 
         private void Button_Register(object sender, RoutedEventArgs e)
@@ -36,22 +36,25 @@ namespace Sushi_shop
             string userLastName = textBoxLastName.Text.Trim();
             string userAddress = textBoxAddress.Text.Trim();
             string userPhone = textBoxPhoneNumber.Text.Trim();
-            string userPassword = passwordBox.Password.Trim();
-            string userPassword2 = passwordBox2.Password.Trim();
+            string userPassword = passwordBox.Password.Trim().GetHashCode().ToString();
+            string userPassword2 = passwordBox2.Password.Trim().GetHashCode().ToString();
             if (userPassword.Length < 7)
             {
                 passwordBox.ToolTip = "password is too short";
                 MessageBox.Show("error in the password field");
+                passwordBox.Focus();
             }
             else if (userPassword != userPassword2)
             {
                 passwordBox2.ToolTip = "password must match";
                 MessageBox.Show("error in the password field");
+                passwordBox2.Focus();
             }
             else if (!userEmail.Contains("@mail.ru") && !userEmail.Contains("@list.ru"))
             {
                 textBoxEmail.ToolTip = "email must include @mail.ru or @list.ru";
                 MessageBox.Show("error in the email field");
+                textBoxEmail.Focus();
             }
             else {
                 textBoxEmail.ToolTip = "";
@@ -66,7 +69,18 @@ namespace Sushi_shop
                 Clients client = new Clients(userEmail, userName, userLastName, userAddress, userPhone, userPassword);
                 db.Clients.Add(client);
                 db.SaveChanges();
+                loginWindow toLoginWindow = new loginWindow();
+                toLoginWindow.Show();
+                Hide();
             }
+
+        }
+
+        private void To_Sign_In_Window(object sender, RoutedEventArgs e)
+        {
+            loginWindow toLoginWindow = new loginWindow();
+            toLoginWindow.Show();
+            Hide();
         }
     }
 }
