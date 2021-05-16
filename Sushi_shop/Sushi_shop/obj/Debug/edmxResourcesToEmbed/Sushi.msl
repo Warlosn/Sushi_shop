@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище sushiDBModelContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="category">
+      <EntityTypeMapping TypeName="sushiDBModel.category">
+        <MappingFragment StoreEntitySet="category">
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="sushiDBModel.Clients">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="id_client" ColumnName="id_client" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="adress" ColumnName="adress" />
+          <ScalarProperty Name="phone_nubmer" ColumnName="phone_nubmer" />
+          <ScalarProperty Name="pasword" ColumnName="pasword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comments">
+      <EntityTypeMapping TypeName="sushiDBModel.comments">
+        <MappingFragment StoreEntitySet="comments">
+          <ScalarProperty Name="Comment_id" ColumnName="Comment_id" />
+          <ScalarProperty Name="Comment_product_id" ColumnName="Comment_product_id" />
+          <ScalarProperty Name="Comment_user_id" ColumnName="Comment_user_id" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="order_details">
+      <EntityTypeMapping TypeName="sushiDBModel.order_details">
+        <MappingFragment StoreEntitySet="order_details">
+          <ScalarProperty Name="details_id" ColumnName="details_id" />
+          <ScalarProperty Name="detail_order_id" ColumnName="detail_order_id" />
+          <ScalarProperty Name="details_product_id" ColumnName="details_product_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="sushiDBModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="id_order" ColumnName="id_order" />
+          <ScalarProperty Name="order_client_id" ColumnName="order_client_id" />
+          <ScalarProperty Name="all_price" ColumnName="all_price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="sushiDBModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="id_product" ColumnName="id_product" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_image" ColumnName="product_image" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="sushiDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

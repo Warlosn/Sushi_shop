@@ -12,18 +12,24 @@ namespace Sushi_shop
     using System;
     using System.Collections.Generic;
     
-
     public partial class Clients
     {
-        public Clients(string email, string firstname, string lastname, string adress, string phone_nubmer, string pasword)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Clients()
         {
-            this.email = email;
-            this.firstname = firstname;
-            this.lastname = lastname;
-            this.adress = adress;
-            this.phone_nubmer = phone_nubmer;
-            this.pasword = pasword;
+            this.Orders = new HashSet<Orders>();
         }
+
+        public Clients(string userEmail, string userName, string userLastName, string userAddress, string userPhone, string userPassword)
+        {
+            this.email = userEmail;
+            this.firstname = userName;
+            this.lastname = userLastName;
+            this.adress = userAddress;
+            this.phone_nubmer = userPhone;
+            this.pasword = userPassword;
+        }
+
 
         public int id_client { get; set; }
         public string email { get; set; }
@@ -32,5 +38,8 @@ namespace Sushi_shop
         public string adress { get; set; }
         public string phone_nubmer { get; set; }
         public string pasword { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Orders> Orders { get; set; }
     }
 }

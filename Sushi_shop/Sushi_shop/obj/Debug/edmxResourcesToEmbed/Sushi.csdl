@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sushiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_category_Products" FromRole="category" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="id_client" />
+    </Key>
+    <Property Name="id_client" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="firstname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="adress" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone_nubmer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pasword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_order_client" FromRole="Clients" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="comments">
+    <Key>
+      <PropertyRef Name="Comment_id" />
+    </Key>
+    <Property Name="Comment_id" Type="Int32" Nullable="false" />
+    <Property Name="Comment_product_id" Type="Int32" />
+    <Property Name="Comment_user_id" Type="Int32" />
+    <Property Name="comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_com_det_product" FromRole="comments" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="order_details">
+    <Key>
+      <PropertyRef Name="details_id" />
+    </Key>
+    <Property Name="details_id" Type="Int32" Nullable="false" />
+    <Property Name="detail_order_id" Type="Int32" />
+    <Property Name="details_product_id" Type="Int32" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_ord_det_orders" FromRole="order_details" ToRole="Orders" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ord_det_product" FromRole="order_details" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="id_order" />
+    </Key>
+    <Property Name="id_order" Type="Int32" Nullable="false" />
+    <Property Name="order_client_id" Type="Int32" />
+    <Property Name="all_price" Type="Double" />
+    <NavigationProperty Name="Clients" Relationship="Self.FK_order_client" FromRole="Orders" ToRole="Clients" />
+    <NavigationProperty Name="order_details" Relationship="Self.FK_ord_det_orders" FromRole="Orders" ToRole="order_details" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="id_product" />
+    </Key>
+    <Property Name="id_product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="product_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="price" Type="Double" Nullable="false" />
+    <Property Name="category_id" Type="Int32" />
+    <NavigationProperty Name="category" Relationship="Self.FK_category_Products" FromRole="Products" ToRole="category" />
+    <NavigationProperty Name="comments" Relationship="Self.FK_com_det_product" FromRole="Products" ToRole="comments" />
+    <NavigationProperty Name="order_details" Relationship="Self.FK_ord_det_product" FromRole="Products" ToRole="order_details" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_category_Products">
+    <End Role="category" Type="Self.category" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_client">
+    <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="id_client" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="order_client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_com_det_product">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="comments" Type="Self.comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id_product" />
+      </Principal>
+      <Dependent Role="comments">
+        <PropertyRef Name="Comment_product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ord_det_orders">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+    <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="id_order" />
+      </Principal>
+      <Dependent Role="order_details">
+        <PropertyRef Name="detail_order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ord_det_product">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="id_product" />
+      </Principal>
+      <Dependent Role="order_details">
+        <PropertyRef Name="details_product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="category" EntityType="Self.category" />
+    <EntitySet Name="Clients" EntityType="Self.Clients" />
+    <EntitySet Name="comments" EntityType="Self.comments" />
+    <EntitySet Name="order_details" EntityType="Self.order_details" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_category_Products" Association="Self.FK_category_Products">
+      <End Role="category" EntitySet="category" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_client" Association="Self.FK_order_client">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_com_det_product" Association="Self.FK_com_det_product">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="comments" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ord_det_orders" Association="Self.FK_ord_det_orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="order_details" EntitySet="order_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ord_det_product" Association="Self.FK_ord_det_product">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="order_details" EntitySet="order_details" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

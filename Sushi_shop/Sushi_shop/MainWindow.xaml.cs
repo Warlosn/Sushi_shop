@@ -20,13 +20,11 @@ namespace Sushi_shop
     /// </summary>
     public partial class MainWindow : Window
     {
-        readonly sushiDBEntities db;
+       
 
         public MainWindow()
         {
             InitializeComponent();
-            db = new sushiDBEntities();
-
         }
 
         private void Button_Register(object sender, RoutedEventArgs e)
@@ -67,8 +65,8 @@ namespace Sushi_shop
 
                 MessageBox.Show("registration complete");
                 Clients client = new Clients(userEmail, userName, userLastName, userAddress, userPhone, userPassword);
-                db.Clients.Add(client);
-                db.SaveChanges();
+                loginWindow.SushiDb.Clients.Add(client);
+                loginWindow.SushiDb.SaveChanges();
                 loginWindow toLoginWindow = new loginWindow();
                 toLoginWindow.Show();
                 Hide();

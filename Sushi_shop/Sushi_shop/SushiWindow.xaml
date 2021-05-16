@@ -3,10 +3,114 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Sushi_shop"
+        xmlns:viewmodel="clr-namespace:Sushi_shop.viewmodel"
         mc:Ignorable="d"
-        Title="SushiWindow" Height="450" Width="800">
+        Title="SushiWindow" d:DataContext="{d:DesignInstance Type=viewmodel:ModelMain}" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="ToggleButton" x:Key="StylesToogle">
+            <Style.Setters>
+                <Setter Property="Background" Value="BlueViolet"></Setter>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <Border CornerRadius="1" Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+            
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background" Value="BlueViolet"></Setter>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" Value="PaleVioletRed"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition  Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Label Background="Blue" Content="Категории" Margin="8" Foreground="White" FontSize="22" Padding="40,5,20,0"></Label>
+            <ListBox Grid.Row="1" ItemsSource="{Binding CategoryList}" SelectedItem="{Binding SelectedCategory}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding category_name}" Width="180"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top" Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Width="200" BorderThickness="1"/>
+                    <Button Content="Поиск"/>
+                </StackPanel>
+            </StackPanel>
+
+            <ListBox Grid.Row="1" ItemsSource="{Binding ProductsList}" SelectedItem="{Binding SelectedProduct, UpdateSourceTrigger=PropertyChanged}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1" BorderBrush="Gray">
+                        <Grid> 
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="200"/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Column="0"  Source="{Binding product_bitmap}"></Image>
+                                <Label Grid.Row="1" Content="{Binding product_name}" FontSize="20" HorizontalAlignment="Center" Foreground="Gray"/>
+                                <StackPanel  Grid.Row="2"  Orientation="Horizontal">
+                                    <Label Content="{Binding price}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Gray"/>
+                                    <Label Content="руб" FontSize="14" VerticalAlignment="Bottom" Foreground="Gray" Margin="0,0,0,5"/>
+                                </StackPanel>
+                                <Button Grid.Row="2" HorizontalAlignment="Right" Content="В корзину"/>
+                                <Grid Grid.Row="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <ToggleButton Style="{DynamicResource StylesToogle}" FontSize="24" Foreground="White" Grid.Column="0" Content="-" Command="{Binding DataContext.plus_minus, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="-" IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"/>
+                                    <Label Grid.Column="1" Content="{Binding product_quantity,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontSize="20" Foreground="Black"/>
+                                    <ToggleButton Style="{DynamicResource StylesToogle}" FontSize="24"  Foreground="White" Grid.Column="2" Content="+" Command="{Binding DataContext.plus_minus, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="+" IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
     </Grid>
 </Window>
