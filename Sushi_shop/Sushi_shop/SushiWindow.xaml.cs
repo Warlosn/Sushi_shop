@@ -24,5 +24,6 @@ namespace Sushi_shop
             InitializeComponent();
             DataContext = loginWindow._ModelMain;
         }
+
     }
 }

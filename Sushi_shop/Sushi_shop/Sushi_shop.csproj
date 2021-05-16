@@ -181,11 +181,27 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="images\category\" />
-    <Folder Include="images\products\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="images\products\fyto_fuji.png" />
+    <Resource Include="images\products\fyto_sapporo.png" />
+    <Resource Include="images\products\fyto_shimoda.png" />
+    <Resource Include="images\products\gynkan_chuca_mix-min.png" />
+    <Resource Include="images\products\gynkan_ebi_mix-min.png" />
+    <Resource Include="images\products\gynkan_tobiko_red.png" />
+    <Resource Include="images\products\gynkan_yasai.png" />
+    <Resource Include="images\products\maki_spicy_syace.png" />
+    <Resource Include="images\products\maki_spicy_tekka.png" />
+    <Resource Include="images\products\maki_syace.png" />
+    <Resource Include="images\products\maki_tekka.png" />
+    <Resource Include="images\products\nigiri_with_marinade_bass.png" />
+    <Resource Include="images\products\nigiri_with_marinade_tuna.png" />
+    <Resource Include="images\products\nigiri_with_roast_basse.png" />
+    <Resource Include="images\products\nigiri_with_roast_tuna.png" />
+    <Resource Include="images\products\uramaki_arizona.png" />
+    <Resource Include="images\products\uramaki_filadelphiya.png" />
+    <Resource Include="images\products\uramaki_kyari.png" />
+    <Resource Include="images\products\uramaki_Yamato.png" />
     <Content Include="Sushi.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Sushi.edmx</DependentUpon>

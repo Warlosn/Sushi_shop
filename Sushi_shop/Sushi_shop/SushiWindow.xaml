@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodel="clr-namespace:Sushi_shop.viewmodel"
+           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="SushiWindow" d:DataContext="{d:DesignInstance Type=viewmodel:ModelMain}" Height="450" Width="800">
     <Window.Resources>
@@ -70,6 +71,25 @@
                     <Button Content="Поиск"/>
                 </StackPanel>
             </StackPanel>
+            <Grid Margin="0 18 0 0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <TextBlock Text="sort by:" FontSize="14" FontWeight="Black" VerticalAlignment="Center" Margin="0,25,2,25.4"/>
+                    <Button Content="name" Width="53" Padding="5" />
+                    <Button Content="price" Width="53" Padding="6"/>
+                    <Button Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}"
+                            Padding="0" Foreground="Black">
+                        <materialDesign:PackIcon Kind="Account" Width="35" Height="35"/>
+                    </Button>
+                    <Button Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}"
+                            Padding="0" Foreground="Black">
+                    <materialDesign:PackIcon Kind="Cart" Width="35" Height="35"/>
+                </Button>
+                <Button Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}"
+                            Padding="0" Foreground="Red">
+                    <materialDesign:PackIcon Kind="Power" Width="35" Height="35"/>
+                </Button>
+            </StackPanel>
+            </Grid>
 
             <ListBox Grid.Row="1" ItemsSource="{Binding ProductsList}" SelectedItem="{Binding SelectedProduct, UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ItemsPanel>

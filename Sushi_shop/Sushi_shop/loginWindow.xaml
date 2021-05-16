@@ -23,7 +23,7 @@
                 <DropShadowEffect BlurRadius="50" Color="Gray" ShadowDepth="10"/>
             </Border.Effect>
             <StackPanel>
-                <TextBlock Text="Welcom to the sushi shop" FontSize="35" FontWeight="ExtraBlack" HorizontalAlignment="Center" Margin="0 0 0 00"/>
+                <TextBlock Text="Welcom to the sushi shop" FontSize="35" FontWeight="ExtraBlack" HorizontalAlignment="Center" Margin="0 0 0 0"/>
                 <TextBlock Text="Enter your data for sign in"  FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 0"/>
                 <TextBlock Text="or register a new account"  FontSize="27" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
                 <Grid Margin="0 0 0 20">
