@@ -32,7 +32,12 @@ namespace Sushi_shop
             SushiDb.Products.Load();
             SushiDb.category.Load();
             SushiDb.comments.Load();
+            SushiDb.Orders.Load();
+            SushiDb.order_details.Load();
+            SushiDb.comments.Load();
             _ModelMain = new ModelMain();
+            CheckRole();
+
         }
 
         private void Button_Sign_Click(object sender, RoutedEventArgs e)
@@ -40,33 +45,33 @@ namespace Sushi_shop
             string userEmail = textBoxEmail.Text.Trim().ToLower();
             string userPassword = passwordBox.Password.Trim().GetHashCode().ToString();
 
-            // if (userPassword.Length < 7)
-            // {
-            //     passwordBox.ToolTip = "пароль слишком короткий";
-            //     MessageBox.Show("ошибка в поле пароль");
-            //     passwordBox.Focus();
-            // }
-            // else if (!userEmail.Contains("@mail.ru") && !userEmail.Contains("@list.ru"))
-            // {
-            //     textBoxEmail.ToolTip = "email должен содержать @mail.ru или @list.ru";
-            //     MessageBox.Show("ошибка в поле email");
-            //     textBoxEmail.Focus();
-            // }
-            // else
-            // {
-            //     textBoxEmail.ToolTip = "";
-            //     passwordBox.ToolTip = "";
-            //     
-            //     var user = SushiDb.Clients.SqlQuery("select * from Clients where  email = '" + userEmail +
-            //                                    "' and pasword = '" + userPassword+"'").FirstOrDefault();
-            //  // var  user = SushiDb.Clients.FirstOrDefault(c => c.email == userEmail);
-            Clients user = new Clients();
+            if (userPassword.Length < 7)
+            {
+                passwordBox.ToolTip = "пароль слишком короткий";
+                MessageBox.Show("ошибка в поле пароль");
+                passwordBox.Focus();
+            }
+            else if (!userEmail.Contains("@mail.ru") && !userEmail.Contains("@list.ru"))
+            {
+                textBoxEmail.ToolTip = "email должен содержать @mail.ru или @list.ru";
+                MessageBox.Show("ошибка в поле email");
+                textBoxEmail.Focus();
+            }
+            else
+            {
+                textBoxEmail.ToolTip = "";
+                passwordBox.ToolTip = "";
+
+                var user = SushiDb.Clients.SqlQuery("select * from Clients where  email = '" + userEmail +
+                                               "' and pasword = '" + userPassword + "'").FirstOrDefault();
+                // var  user = SushiDb.Clients.FirstOrDefault(c => c.email == userEmail);
+                //Clients user = new Clients();
             if (user != null)
                 {
                 UserID = user.id_client;
                     if (user.email == "admin@mail.ru")
                         IsAdmin = 1;
-                if (user.email == "courier@mail.ru") {
+                if (user.email == "vanya.grishin.2000@list.ru") {
                     CourierWindow toCourierWindow = new CourierWindow();
                     toCourierWindow.Show();
                     Hide();
@@ -79,7 +84,7 @@ namespace Sushi_shop
                 else
                     MessageBox.Show("hren'");
 
-            //}
+            }
 
         }
 
@@ -89,6 +94,12 @@ namespace Sushi_shop
             toMainWindow.Show();
             Hide();
 
+        }
+
+        private void CheckRole()
+        {
+            if (IsAdmin == 1)
+                _ModelMain.AdminPanel = 320;
         }
     }
 }

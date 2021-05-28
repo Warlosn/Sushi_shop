@@ -70,8 +70,8 @@
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Height="30" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal">
-                        <TextBox Name="SearchLine" Width="200" BorderThickness="1"/>
-                        <Button Content="Поиск"/>
+                        <TextBox Text="{Binding SearchLine}"  Width="200" BorderThickness="1"/>
+                        <Button Command="{Binding SearchProduct}" Content="Поиск"/>
                     </StackPanel>
                 </StackPanel>
 
@@ -80,8 +80,7 @@
                             Padding="0" Foreground="Black">
                         <materialDesign:PackIcon Kind="Account" Width="35" Height="40"/>
                     </Button>
-                    <Button Click="GoToCart"  Width="35" Height="35" Background="{x:Null}" BorderBrush="{x:Null}"
-                            Padding="0" Foreground="Black">
+                    <Button Command="{Binding ShowBasket}">
                         <materialDesign:PackIcon Kind="Cart" Width="35" Height="35"/>
                     </Button>
                     <Button Click="Turn_off_the_program" Width="35" Height="35" Background="{x:Null}" BorderBrush="{x:Null}"
@@ -93,15 +92,16 @@
 
                 <StackPanel Grid.Row="1" Margin="10" Orientation="Horizontal" HorizontalAlignment="Left">
                     <TextBlock Text="сортировать по: " FontSize="20" Foreground="Black" VerticalAlignment="Center"/>
-                    <Button  Content="имени" Width="52" Padding="2" Margin="2,0,2,0"/>
-                    <Button Content="цене" Width="42" Padding="2" Margin="2,0,2,0"/>
+                    <Button Command="{Binding SortByName}"  Content="имени" Width="52" Padding="2" Margin="2,0,2,0"/>
+                    <Button Command="{Binding SortByPrice}" Content="цене" Width="42" Padding="2" Margin="2,0,2,0"/>
                 </StackPanel>
 
 
                 <Grid Grid.Column="1" Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="320"/>
+                        <ColumnDefinition Width="{Binding AdminPanel , UpdateSourceTrigger=PropertyChanged}" 
+                                          />
                     </Grid.ColumnDefinitions>
 
                     <ListBox  Grid.Column="0" ItemsSource="{Binding ProductsList}" SelectedItem="{Binding SelectedProduct, UpdateSourceTrigger=PropertyChanged}">
@@ -196,6 +196,7 @@
                 </Grid>
             </Grid> 
         </Grid>
+        <Frame Background="White"  BorderThickness="2" BorderBrush="Gray" Visibility="{Binding VisibilityFrameBasket}" Source="Basket.xaml" NavigationUIVisibility="Hidden" Width="350" Height="500"/>
         <Frame Background="White"  BorderThickness="2" BorderBrush="Gray" Visibility="{Binding VisibilityFrame}" Source="Comments.xaml" NavigationUIVisibility="Hidden" Width="350" Height="500"/>
     </Grid>
 </Window>

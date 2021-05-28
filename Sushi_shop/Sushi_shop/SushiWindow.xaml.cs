@@ -46,15 +46,6 @@ namespace Sushi_shop
             Hide();
         }
 
-        private void GoToCart(object sender, RoutedEventArgs e)
-        {
-            ShoppingCart toCart = new ShoppingCart();
-            if (toCart.ShowDialog() == true) { 
-            
-            }
-
-        }
-
-        
+      
     }
 }

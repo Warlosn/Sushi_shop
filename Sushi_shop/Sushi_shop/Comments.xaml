@@ -20,7 +20,9 @@
         
         
         <Label Grid.Row="0" Content="Оставьте комментарий" Foreground="Black" FontSize="20" HorizontalAlignment="Left"/>
-          
+        <ToggleButton Command="{Binding ShowComment}" Style="{DynamicResource StylesToogle}"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5" FontSize="24"  Foreground="White"  IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}">
+            <materialDesign:PackIcon Kind="Cross"  Margin="5"   Height="20" Width="20"/>
+        </ToggleButton>
         <ListBox  Grid.Row="1" ItemsSource="{Binding CommentsList}">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>

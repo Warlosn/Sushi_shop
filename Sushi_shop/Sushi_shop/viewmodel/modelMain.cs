@@ -10,11 +10,10 @@ using System.Collections.Generic;
 
 namespace Sushi_shop.viewmodel
 {
-    public class ModelMain : INotifyPropertyChanged
+    public partial class ModelMain : INotifyPropertyChanged
     {
-        private List<Products> ProductsData;
-        public ObservableCollection<Products> _productsList;
-        public ObservableCollection<category> _categoryList;
+        public ObservableCollection<Products> _productsList = loginWindow.SushiDb.Products.Local;
+        public ObservableCollection<category> _categoryList = loginWindow.SushiDb.category.Local;
         public ObservableCollection<comments> _commentsList;
         private category _selectedCategory = new category();
         private Products _products;
@@ -25,35 +24,60 @@ namespace Sushi_shop.viewmodel
         private Commands _addCategory;
         private Commands _plus_minus;
         private Commands _showComment;
-        private Commands _searchProduct;
         private Visibility _visibilityFrame = Visibility.Hidden;
         private Commands _addcomment;
         public string NewComment { get; set; }
-
-        public ModelMain()
-        {
-            _categoryList = loginWindow.SushiDb.category.Local;
-            ProductsData = loginWindow.SushiDb.Products.Local.ToList(); 
-            _productsList =  new ObservableCollection<Products>(ProductsData.Select(p => p));
-        }
-
+        private double _adminpanel;
+        private Commands _sortByName;
+        private Commands _sortByPrice;
+        private Commands _searchProduct;
+        public string SearchLine { get; set; } = string.Empty;
 
         public Commands SearchProduct
         {
             get
             {
-                return _searchProduct ?? (_searchProduct = new Commands((obj)=>
-                {
-                    string searchName = (string)obj;
-                    if (!string.IsNullOrEmpty(searchName))
+                return _searchProduct ??
+                    (_searchProduct = new Commands(obj =>
                     {
-                        _productsList = new ObservableCollection<Products>(ProductsData.Where(p => p.product_name.Contains(searchName)).ToList());
-                    }
-                    else
+                        ProductsList = new ObservableCollection<Products> (loginWindow.SushiDb.Products.Local.Where(o=>o.product_name.ToLower().Contains(SearchLine.ToLower())));
+                            
+                    }));
+            }
+        }
+
+        public Commands SortByName
+        {
+            get
+            {
+                return _sortByName ??
+                    (_sortByName = new Commands(obj =>
                     {
-                        _productsList = new ObservableCollection<Products>(ProductsData.Select(p => p)); 
-                    }
-                }));
+                        ProductsList =
+                            new ObservableCollection<Products>(ProductsList.OrderBy(products => products.product_name));
+                    }));
+            }
+        }
+        public Commands SortByPrice
+        {
+            get
+            {
+                return _sortByPrice ??
+                    (_sortByPrice = new Commands(obj =>
+                    {
+                        
+                    }));
+            }
+        }
+
+
+
+        public double AdminPanel {
+            get => _adminpanel;
+            set
+            {
+                _adminpanel = value;
+                OnPropertyChanged("AdminPanel");
             }
         }
 
@@ -87,7 +111,7 @@ namespace Sushi_shop.viewmodel
                         if (VisibilityFrame == Visibility.Hidden)
                         {
                             VisibilityFrame = Visibility.Visible;
-                            SelectingComments();
+                            
                         }
                         else
                             VisibilityFrame = Visibility.Hidden;

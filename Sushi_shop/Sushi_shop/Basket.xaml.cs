@@ -10,20 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Sushi_shop.viewmodel;
 
 namespace Sushi_shop
 {
     /// <summary>
-    /// Логика взаимодействия для CourierWindow.xaml
+    /// Логика взаимодействия для Basket.xaml
     /// </summary>
-    public partial class CourierWindow : Window
+    public partial class Basket : Page
     {
-        public CourierWindow()
+        public Basket()
         {
             InitializeComponent();
-            DataContext = new Delivery();
+            DataContext = loginWindow._ModelMain;
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

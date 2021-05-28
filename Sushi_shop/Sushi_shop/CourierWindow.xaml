@@ -3,10 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Sushi_shop"
+        xmlns:viewmodel="clr-namespace:Sushi_shop.viewmodel"
         mc:Ignorable="d"
-        Title="CourierWindow" Height="450" Width="800">
-    <Grid>
+        d:DataContext="{d:DesignInstance Type=viewmodel:Delivery}"
+        Title="CourierWindow" Height="450" Width="800" >
         
-    </Grid>
+        <DataGrid ItemsSource="{Binding OrderList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True">
+               <DataGrid.Columns>
+                   <DataGridTextColumn Header="id" Binding="{Binding id_order}">
+                   </DataGridTextColumn>
+                   <DataGridTextColumn Header="i1" Binding="{Binding order_client_id}">
+                   </DataGridTextColumn>
+                   <DataGridTextColumn Header="i2" Binding="{Binding all_price}">
+                   </DataGridTextColumn>
+                   <DataGridTextColumn Header="i2" Binding="{Binding Clients.adress}">
+                   </DataGridTextColumn>
+               </DataGrid.Columns>
+        </DataGrid>
 </Window>

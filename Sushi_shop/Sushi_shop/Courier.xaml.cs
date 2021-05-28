@@ -15,19 +15,13 @@ using System.Windows.Shapes;
 namespace Sushi_shop
 {
     /// <summary>
-    /// Логика взаимодействия для ShoppingCart.xaml
+    /// Логика взаимодействия для Courier.xaml
     /// </summary>
-    public partial class ShoppingCart : Window
+    public partial class Courier : Window
     {
-        public ShoppingCart()
+        public Courier()
         {
             InitializeComponent();
-        }
-
-        private void ConfirmOrder(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Заказ подтвержден, ожидайте доставку.");
-            Close();
         }
     }
 }
