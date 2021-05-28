@@ -3,15 +3,18 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Collections;
 using Microsoft.Win32;
 using Sushi_shop.Annotations;
+using System.Collections.Generic;
 
 namespace Sushi_shop.viewmodel
 {
     public class ModelMain : INotifyPropertyChanged
     {
-        public ObservableCollection<Products> _productsList = loginWindow.SushiDb.Products.Local;
-        public ObservableCollection<category> _categoryList = loginWindow.SushiDb.category.Local;
+        private List<Products> ProductsData;
+        public ObservableCollection<Products> _productsList;
+        public ObservableCollection<category> _categoryList;
         public ObservableCollection<comments> _commentsList;
         private category _selectedCategory = new category();
         private Products _products;
@@ -22,9 +25,37 @@ namespace Sushi_shop.viewmodel
         private Commands _addCategory;
         private Commands _plus_minus;
         private Commands _showComment;
+        private Commands _searchProduct;
         private Visibility _visibilityFrame = Visibility.Hidden;
         private Commands _addcomment;
         public string NewComment { get; set; }
+
+        public ModelMain()
+        {
+            _categoryList = loginWindow.SushiDb.category.Local;
+            ProductsData = loginWindow.SushiDb.Products.Local.ToList(); 
+            _productsList =  new ObservableCollection<Products>(ProductsData.Select(p => p));
+        }
+
+
+        public Commands SearchProduct
+        {
+            get
+            {
+                return _searchProduct ?? (_searchProduct = new Commands((obj)=>
+                {
+                    string searchName = (string)obj;
+                    if (!string.IsNullOrEmpty(searchName))
+                    {
+                        _productsList = new ObservableCollection<Products>(ProductsData.Where(p => p.product_name.Contains(searchName)).ToList());
+                    }
+                    else
+                    {
+                        _productsList = new ObservableCollection<Products>(ProductsData.Select(p => p)); 
+                    }
+                }));
+            }
+        }
 
         public Visibility VisibilityFrame
         {

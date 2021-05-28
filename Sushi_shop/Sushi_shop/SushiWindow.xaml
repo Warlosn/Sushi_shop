@@ -70,7 +70,7 @@
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Height="30" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal">
-                        <TextBox Width="200" BorderThickness="1"/>
+                        <TextBox Name="SearchLine" Width="200" BorderThickness="1"/>
                         <Button Content="Поиск"/>
                     </StackPanel>
                 </StackPanel>
@@ -93,7 +93,7 @@
 
                 <StackPanel Grid.Row="1" Margin="10" Orientation="Horizontal" HorizontalAlignment="Left">
                     <TextBlock Text="сортировать по: " FontSize="20" Foreground="Black" VerticalAlignment="Center"/>
-                    <Button Content="имени" Width="52" Padding="2" Margin="2,0,2,0"/>
+                    <Button  Content="имени" Width="52" Padding="2" Margin="2,0,2,0"/>
                     <Button Content="цене" Width="42" Padding="2" Margin="2,0,2,0"/>
                 </StackPanel>
 
