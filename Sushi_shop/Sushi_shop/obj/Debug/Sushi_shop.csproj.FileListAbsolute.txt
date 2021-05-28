@@ -42,3 +42,9 @@ D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\loginWindow.g.cs
 D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\loginWindow.baml
 D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\SushiWindow.g.cs
 D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\SushiWindow.baml
+D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\ShoppingCart.g.cs
+D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\ShoppingCart.baml
+D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\CourierWindow.g.cs
+D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\Comments.g.cs
+D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\Comments.baml
+D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\obj\Debug\CourierWindow.baml

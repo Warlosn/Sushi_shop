@@ -30,12 +30,40 @@ namespace Sushi_shop
         private BitmapImage _product_bitmap;
         private byte[] _product_image;
         public int id_product { get; set; }
-        public string product_name { get; set; }
+        private string _product_name { get; set; }
         private int _product_quantity ;
-        public double price { get; set; }
+        private double _price { get; set; }
         public Nullable<int> category_id { get; set; }
-        public virtual category category { get; set; }
+        private category _category { get; set; }
 
+        public virtual category category
+        {
+            get => _category;
+            set
+            {
+                _category= value;
+                OnPropertyChanged("category");
+            }
+        }
+
+        public string product_name
+        {
+            get => _product_name;
+            set
+            {
+                _product_name = value;
+                OnPropertyChanged("product_name");
+            }
+        }
+        public double price
+        {
+            get => _price;
+            set
+            {
+                _price = value;
+                OnPropertyChanged("price");
+            }
+        }
         public int product_quantity
         {
             get => _product_quantity;

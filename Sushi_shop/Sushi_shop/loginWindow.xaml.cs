@@ -22,6 +22,7 @@ namespace Sushi_shop
     public partial class loginWindow : Window
     {
         public static int IsAdmin;
+        public static int UserID;
         public static  Entities SushiDb;
         public static ModelMain _ModelMain;
         public loginWindow()
@@ -30,6 +31,7 @@ namespace Sushi_shop
             SushiDb = new Entities();
             SushiDb.Products.Load();
             SushiDb.category.Load();
+            SushiDb.comments.Load();
             _ModelMain = new ModelMain();
         }
 
@@ -40,14 +42,14 @@ namespace Sushi_shop
 
             // if (userPassword.Length < 7)
             // {
-            //     passwordBox.ToolTip = "password is too short";
-            //     MessageBox.Show("error in the password field");
+            //     passwordBox.ToolTip = "пароль слишком короткий";
+            //     MessageBox.Show("ошибка в поле пароль");
             //     passwordBox.Focus();
             // }
             // else if (!userEmail.Contains("@mail.ru") && !userEmail.Contains("@list.ru"))
             // {
-            //     textBoxEmail.ToolTip = "email must include @mail.ru or @list.ru";
-            //     MessageBox.Show("error in the email field");
+            //     textBoxEmail.ToolTip = "email должен содержать @mail.ru или @list.ru";
+            //     MessageBox.Show("ошибка в поле email");
             //     textBoxEmail.Focus();
             // }
             // else
@@ -61,9 +63,16 @@ namespace Sushi_shop
             Clients user = new Clients();
             if (user != null)
                 {
+                UserID = user.id_client;
                     if (user.email == "admin@mail.ru")
                         IsAdmin = 1;
-                    SushiWindow toShushiWindow = new SushiWindow();
+                if (user.email == "courier@mail.ru") {
+                    CourierWindow toCourierWindow = new CourierWindow();
+                    toCourierWindow.Show();
+                    Hide();
+                     }
+
+                SushiWindow toShushiWindow = new SushiWindow();
                     toShushiWindow.Show();
                     Hide();
                 }

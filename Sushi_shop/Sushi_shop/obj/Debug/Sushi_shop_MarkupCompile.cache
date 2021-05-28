@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\GitHub\Sushi_shop\Sushi_shop\Sushi_shop\App.xaml
-3591083280
+6893856883
 2589795081
-21-433362621
+24-438275473
 211502886090
-loginWindow.xaml;MainWindow.xaml;SushiWindow.xaml;
+Comments.xaml;CourierWindow.xaml;loginWindow.xaml;MainWindow.xaml;ShoppingCart.xaml;SushiWindow.xaml;
 images\loading_screen.png
-False
+True
 

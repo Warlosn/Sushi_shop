@@ -34,24 +34,24 @@ namespace Sushi_shop
             string userLastName = textBoxLastName.Text.Trim();
             string userAddress = textBoxAddress.Text.Trim();
             string userPhone = textBoxPhoneNumber.Text.Trim();
-            string userPassword = passwordBox.Password.Trim().GetHashCode().ToString();
-            string userPassword2 = passwordBox2.Password.Trim().GetHashCode().ToString();
+            string userPassword = passwordBox.Password.ToString();
+            string userPassword2 = passwordBox2.Password.Trim().ToString();
             if (userPassword.Length < 7)
             {
-                passwordBox.ToolTip = "password is too short";
-                MessageBox.Show("error in the password field");
+                passwordBox.ToolTip = "Пароль слишком короткий";
+                MessageBox.Show("Ошибка в поле пароль");
                 passwordBox.Focus();
             }
             else if (userPassword != userPassword2)
             {
-                passwordBox2.ToolTip = "password must match";
-                MessageBox.Show("error in the password field");
+                passwordBox2.ToolTip = "пароли должны совпадать";
+                MessageBox.Show("Ошибка в поле парольы");
                 passwordBox2.Focus();
             }
             else if (!userEmail.Contains("@mail.ru") && !userEmail.Contains("@list.ru"))
             {
-                textBoxEmail.ToolTip = "email must include @mail.ru or @list.ru";
-                MessageBox.Show("error in the email field");
+                textBoxEmail.ToolTip = "email должен включать @mail.ru или @list.ru";
+                MessageBox.Show("ошибка в поле email");
                 textBoxEmail.Focus();
             }
             else {
@@ -63,8 +63,8 @@ namespace Sushi_shop
                 passwordBox.ToolTip = "";
                 passwordBox2.ToolTip = "";
 
-                MessageBox.Show("registration complete");
-                Clients client = new Clients(userEmail, userName, userLastName, userAddress, userPhone, userPassword);
+                MessageBox.Show("регистрация завершена");
+                Clients client = new Clients(userEmail, userName, userLastName, userAddress, userPhone, userPassword.GetHashCode().ToString());
                 loginWindow.SushiDb.Clients.Add(client);
                 loginWindow.SushiDb.SaveChanges();
                 loginWindow toLoginWindow = new loginWindow();

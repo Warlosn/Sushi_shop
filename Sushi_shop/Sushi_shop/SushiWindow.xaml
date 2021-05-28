@@ -6,7 +6,7 @@
         xmlns:viewmodel="clr-namespace:Sushi_shop.viewmodel"
            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="SushiWindow" d:DataContext="{d:DesignInstance Type=viewmodel:ModelMain}" Height="450" Width="800">
+        d:DataContext="{d:DesignInstance Type=viewmodel:ModelMain}"  Title="SushiWindow" Height="450" Width="800" MinWidth="820" MinHeight="490">
     <Window.Resources>
         <Style TargetType="ToggleButton" x:Key="StylesToogle">
             <Style.Setters>
@@ -34,103 +34,168 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition  Width="300"/>
-        </Grid.ColumnDefinitions>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            
-            <Label Background="Blue" Content="Категории" Margin="8" Foreground="White" FontSize="22" Padding="40,5,20,0"></Label>
-            <ListBox Grid.Row="1" ItemsSource="{Binding CategoryList}" SelectedItem="{Binding SelectedCategory}">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Top"></StackPanel>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding category_name}" Width="180"/>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-        <Grid Grid.Column="1" Grid.Row="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Top" Margin="10">
-                <StackPanel Orientation="Horizontal">
-                    <TextBox Width="200" BorderThickness="1"/>
-                    <Button Content="Поиск"/>
-                </StackPanel>
-            </StackPanel>
-            <Grid Margin="0 18 0 0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <TextBlock Text="sort by:" FontSize="14" FontWeight="Black" VerticalAlignment="Center" Margin="0,25,2,25.4"/>
-                    <Button Content="name" Width="53" Padding="5" />
-                    <Button Content="price" Width="53" Padding="6"/>
-                    <Button Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}"
-                            Padding="0" Foreground="Black">
-                        <materialDesign:PackIcon Kind="Account" Width="35" Height="35"/>
-                    </Button>
-                    <Button Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}"
-                            Padding="0" Foreground="Black">
-                    <materialDesign:PackIcon Kind="Cart" Width="35" Height="35"/>
-                </Button>
-                <Button Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}"
-                            Padding="0" Foreground="Red">
-                    <materialDesign:PackIcon Kind="Power" Width="35" Height="35"/>
-                </Button>
-            </StackPanel>
+                <Label Background="Blue" Content="Категории" Margin="8" Foreground="White" FontSize="22" Padding="40,5,20,0"></Label>
+                
+                <ListBox Grid.Row="1" ItemsSource="{Binding CategoryList}" SelectedItem="{Binding SelectedCategory, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Top"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding category_name}" Width="180" Background="Aqua" Foreground="Black"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </Grid>
 
-            <ListBox Grid.Row="1" ItemsSource="{Binding ProductsList}" SelectedItem="{Binding SelectedProduct, UpdateSourceTrigger=PropertyChanged}">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Center"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderThickness="1" BorderBrush="Gray">
-                        <Grid> 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="200"/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Image Grid.Column="0"  Source="{Binding product_bitmap}"></Image>
-                                <Label Grid.Row="1" Content="{Binding product_name}" FontSize="20" HorizontalAlignment="Center" Foreground="Gray"/>
-                                <StackPanel  Grid.Row="2"  Orientation="Horizontal">
-                                    <Label Content="{Binding price}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Gray"/>
-                                    <Label Content="руб" FontSize="14" VerticalAlignment="Bottom" Foreground="Gray" Margin="0,0,0,5"/>
-                                </StackPanel>
-                                <Button Grid.Row="2" HorizontalAlignment="Right" Content="В корзину"/>
-                                <Grid Grid.Row="3">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <ToggleButton Style="{DynamicResource StylesToogle}" FontSize="24" Foreground="White" Grid.Column="0" Content="-" Command="{Binding DataContext.plus_minus, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="-" IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"/>
-                                    <Label Grid.Column="1" Content="{Binding product_quantity,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontSize="20" Foreground="Black"/>
-                                    <ToggleButton Style="{DynamicResource StylesToogle}" FontSize="24"  Foreground="White" Grid.Column="2" Content="+" Command="{Binding DataContext.plus_minus, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="+" IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"/>
-                                </Grid>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <Grid Grid.Column="1" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Height="30" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Width="200" BorderThickness="1"/>
+                        <Button Content="Поиск"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,0">
+                    <Button Click="Changing_user" Width="35" Height="35" Background="{x:Null}" BorderBrush="{x:Null}"
+                            Padding="0" Foreground="Black">
+                        <materialDesign:PackIcon Kind="Account" Width="35" Height="40"/>
+                    </Button>
+                    <Button Click="GoToCart"  Width="35" Height="35" Background="{x:Null}" BorderBrush="{x:Null}"
+                            Padding="0" Foreground="Black">
+                        <materialDesign:PackIcon Kind="Cart" Width="35" Height="35"/>
+                    </Button>
+                    <Button Click="Turn_off_the_program" Width="35" Height="35" Background="{x:Null}" BorderBrush="{x:Null}"
+                            Padding="0" Foreground="Red">
+                        <materialDesign:PackIcon Kind="Power" Width="35" Height="35"/>
+                    </Button>
+                </StackPanel>
+
+
+                <StackPanel Grid.Row="1" Margin="10" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <TextBlock Text="сортировать по: " FontSize="20" Foreground="Black" VerticalAlignment="Center"/>
+                    <Button Content="имени" Width="52" Padding="2" Margin="2,0,2,0"/>
+                    <Button Content="цене" Width="42" Padding="2" Margin="2,0,2,0"/>
+                </StackPanel>
+
+
+                <Grid Grid.Column="1" Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="320"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ListBox  Grid.Column="0" ItemsSource="{Binding ProductsList}" SelectedItem="{Binding SelectedProduct, UpdateSourceTrigger=PropertyChanged}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Center" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="1" BorderBrush="Gray">
+                                    <Grid Width="220" Height="320">
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="200"/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <ToggleButton Command="{Binding DataContext.ShowComment, RelativeSource={RelativeSource AncestorType=Window}}" Style="{DynamicResource StylesToogle}"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" FontSize="24"  Foreground="White"  IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}">
+                                            <materialDesign:PackIcon Kind="Comment"  Margin="5"   Height="20" Width="20"/>
+                                        </ToggleButton>
+
+                                        <Image Grid.Column="0"  Source="{Binding product_bitmap}"></Image>
+                                        <Label Grid.Row="1" Content="{Binding product_name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="20" HorizontalAlignment="Center" Foreground="Gray"/>
+                                        <StackPanel  Grid.Row="2"  Orientation="Horizontal">
+                                            <Label Content="{Binding price}" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Gray"/>
+                                            <Label Content="руб" FontSize="14" VerticalAlignment="Bottom" Foreground="Gray" Margin="0,0,0,5"/>
+                                        </StackPanel>
+                                        <ToggleButton  Grid.Row="2"
+                                                       HorizontalAlignment="Right" 
+                                                       Content="В корзину" 
+                                                       Style="{DynamicResource StylesToogle}"
+                                                       Command="{Binding DataContext.AddBasket, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                       IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"
+                                                       />
+                                       
+                                        <Grid Grid.Row="3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <ToggleButton Style="{DynamicResource StylesToogle}" FontSize="24" Foreground="White" Grid.Column="0" Content="-" Command="{Binding DataContext.plus_minus, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="-" IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"/>
+                                            <Label Grid.Column="1" Content="{Binding product_quantity,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontSize="20" Foreground="Black"/>
+                                            <ToggleButton Style="{DynamicResource StylesToogle}" FontSize="24"  Foreground="White" Grid.Column="2" Content="+" Command="{Binding DataContext.plus_minus, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="+" IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"/>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <Grid Grid.Column="1">
+                        <StackPanel Height="900" VerticalAlignment="Top" Background="DarkGray">
+                            <Label Content="Имя продукта:" Foreground="Black" FontSize="18" />
+                            <TextBox MaxLength="20" Text="{Binding SelectedProduct.product_name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="250" HorizontalAlignment="Left" Margin="23,0,25,0" BorderThickness="2" BorderBrush="Purple"/>
+
+                            <Label Content="Цена:" Foreground="Black" FontSize="18" />
+                            <TextBox Text="{Binding SelectedProduct.price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="250" HorizontalAlignment="Left" Margin="23,0,25,0" BorderThickness="2" BorderBrush="Purple"/>
+
+                            <Label Content="Номер категории:" Foreground="Black" FontSize="18" />
+                            <ComboBox
+                            SelectedItem="{Binding SelectedProduct.category}"
+                            ItemsSource="{ Binding DataContext.CategoryList, RelativeSource={RelativeSource AncestorType=Window}}"
+                            DisplayMemberPath="category_name"
+                            />
+
+                            <Label Content="Картинка:" Foreground="Black" FontSize="18" />
+                            <Button Command="{Binding ChangeImage}" HorizontalAlignment="Left"  Content="выбрать картинку" />
+                            <StackPanel Orientation="Horizontal">
+                                <Button Command="{Binding AddProduct}" HorizontalAlignment="Left" >
+                                    <materialDesign:PackIcon Kind="Plus" Width="35" Height="25"/>
+                                </Button>
+                                <Button Command="{Binding DeleteProduct}" HorizontalAlignment="Left" >
+                                    <materialDesign:PackIcon Kind="Minus" Width="35" Height="25"/>
+                                </Button>
+                            </StackPanel>
+                            <Label Content="Имя категории:" Foreground="Black" FontSize="18" />
+                            <TextBox MaxLength="10" Text="{Binding SelectedCategory.category_name, UpdateSourceTrigger=PropertyChanged}" Width="250" HorizontalAlignment="Left" Margin="23,0,25,10" BorderThickness="2" BorderBrush="Purple"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Command="{Binding AddCategory}" HorizontalAlignment="Left" >
+                                    <materialDesign:PackIcon Kind="Plus" Width="35" Height="25"/>
+                                </Button>
+                                <Button Command="{Binding DeleteCategory}" HorizontalAlignment="Left" >
+                                    <materialDesign:PackIcon Kind="Minus" Width="35" Height="25"/>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid> 
         </Grid>
+        <Frame Background="White"  BorderThickness="2" BorderBrush="Gray" Visibility="{Binding VisibilityFrame}" Source="Comments.xaml" NavigationUIVisibility="Hidden" Width="350" Height="500"/>
     </Grid>
 </Window>

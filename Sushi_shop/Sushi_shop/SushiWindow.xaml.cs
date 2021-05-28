@@ -23,7 +23,38 @@ namespace Sushi_shop
         {
             InitializeComponent();
             DataContext = loginWindow._ModelMain;
+            Closed += (sender, args)=>
+            {
+                loginWindow.SushiDb.SaveChanges();
+            };
         }
 
+        private void SushiWindow_Closed(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Turn_off_the_program(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Changing_user(object sender, RoutedEventArgs e)
+        {
+            loginWindow toLoginWindow = new loginWindow();
+            toLoginWindow.Show();
+            Hide();
+        }
+
+        private void GoToCart(object sender, RoutedEventArgs e)
+        {
+            ShoppingCart toCart = new ShoppingCart();
+            if (toCart.ShowDialog() == true) { 
+            
+            }
+
+        }
+
+        
     }
 }

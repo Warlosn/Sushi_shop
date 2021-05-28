@@ -23,16 +23,16 @@
                 <DropShadowEffect BlurRadius="50" Color="Gray" ShadowDepth="10"/>
             </Border.Effect>
             <StackPanel>
-                <TextBlock Text="Welcom to the sushi shop" FontSize="35" FontWeight="ExtraBlack" HorizontalAlignment="Center" Margin="0 0 0 0"/>
-                <TextBlock Text="Enter your data for sign in"  FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 0"/>
-                <TextBlock Text="or register a new account"  FontSize="27" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                <TextBlock Text="Добро пожаловать в магазин суши" FontSize="25" FontWeight="ExtraBlack" HorizontalAlignment="Center" Margin="0 0 0 0"/>
+                <TextBlock Text="Введите ваши данные, чтобы войти"  FontSize="23" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 0"/>
+                <TextBlock Text="или зарегистрируйте новый аакаунт"  FontSize="23" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
                 <Grid Margin="0 0 0 20">
-                    <Button HorizontalAlignment="Left" Content="Sign up" Click="To_sign_up_window"/>
-                    <Button HorizontalAlignment="Right" Content="Sign in" Style="{StaticResource MaterialDesignFlatButton}"/>
+                    <Button HorizontalAlignment="Left" Content="Регистрация" Click="To_sign_up_window"/>
+                    <Button HorizontalAlignment="Right" Content="Вход" Style="{StaticResource MaterialDesignFlatButton}"/>
                 </Grid>
-                <TextBox x:Name="textBoxEmail" materialDesign:HintAssist.Hint="enter your email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <PasswordBox x:Name="passwordBox" materialDesign:HintAssist.Hint="enter your password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
-                <Button Content="sign in" x:Name="signInButton" Margin="0 20" Click="Button_Sign_Click"/>
+                <TextBox x:Name="textBoxEmail" materialDesign:HintAssist.Hint="Введите ваш email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox x:Name="passwordBox" materialDesign:HintAssist.Hint="Введите ваш пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <Button Content="Войти" x:Name="signInButton" Margin="0 20" Click="Button_Sign_Click"/>
             </StackPanel>
         </Border>
     </Grid>
