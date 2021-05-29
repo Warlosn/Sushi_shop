@@ -36,7 +36,31 @@ namespace Sushi_shop
             string userPhone = textBoxPhoneNumber.Text.Trim();
             string userPassword = passwordBox.Password.ToString();
             string userPassword2 = passwordBox2.Password.Trim().ToString();
-            if (userPassword.Length < 7)
+            if (userName.Length < 2)
+            {
+                textBoxName.ToolTip = "Имя слишком короткое";
+                MessageBox.Show("Ошибка в поле имя");
+                textBoxName.Focus();
+            }
+            else if (userLastName.Length < 3)
+            {
+                textBoxLastName.ToolTip = "Фамилия слишком короткая";
+                MessageBox.Show("Ошибка в поле Фамилия");
+                textBoxLastName.Focus();
+            }
+            else if (userAddress.Length < 5)
+            {
+                textBoxAddress.ToolTip = "Адрес слишком короткий";
+                MessageBox.Show("Ошибка в поле Адресс");
+                textBoxAddress.Focus();
+            }
+            else if (userPhone.Length !=12)
+            {
+                textBoxPhoneNumber.ToolTip = "номер телефона некорректный";
+                MessageBox.Show("Ошибка в поле номер телефона");
+                textBoxPhoneNumber.Focus();
+            }
+            else if (userPassword.Length < 7)
             {
                 passwordBox.ToolTip = "Пароль слишком короткий";
                 MessageBox.Show("Ошибка в поле пароль");

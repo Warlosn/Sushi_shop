@@ -12,12 +12,14 @@
                <DataGrid.Columns>
                    <DataGridTextColumn Header="id" Binding="{Binding id_order}">
                    </DataGridTextColumn>
-                   <DataGridTextColumn Header="i1" Binding="{Binding order_client_id}">
+                   <DataGridTextColumn Header="id_клиента" Binding="{Binding order_client_id}">
                    </DataGridTextColumn>
-                   <DataGridTextColumn Header="i2" Binding="{Binding all_price}">
+                   <DataGridTextColumn Header="стоимость" Binding="{Binding all_price}">
                    </DataGridTextColumn>
-                   <DataGridTextColumn Header="i2" Binding="{Binding Clients.adress}">
+                   <DataGridTextColumn Header="адресс" Binding="{Binding Clients.adress}">
                    </DataGridTextColumn>
-               </DataGrid.Columns>
+            <DataGridTextColumn Header="номер телефона" Binding="{Binding Clients.phone_nubmer}">
+            </DataGridTextColumn>
+        </DataGrid.Columns>
         </DataGrid>
 </Window>

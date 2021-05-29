@@ -21,7 +21,7 @@ namespace Sushi_shop
     /// </summary>
     public partial class loginWindow : Window
     {
-        public static int IsAdmin;
+        public static int IsAdmin =1;
         public static int UserID;
         public static  Entities SushiDb;
         public static ModelMain _ModelMain;
@@ -71,18 +71,21 @@ namespace Sushi_shop
                 UserID = user.id_client;
                     if (user.email == "admin@mail.ru")
                         IsAdmin = 1;
-                if (user.email == "vanya.grishin.2000@list.ru") {
-                    CourierWindow toCourierWindow = new CourierWindow();
-                    toCourierWindow.Show();
-                    Hide();
-                     }
-
-                SushiWindow toShushiWindow = new SushiWindow();
-                    toShushiWindow.Show();
-                    Hide();
+                    if (user.email == "vanya.grishin.2000@list.ru")
+                    {
+                        CourierWindow toCourierWindow = new CourierWindow();
+                        toCourierWindow.Show();
+                        Hide();
+                    }
+                    else
+                    {
+                        SushiWindow toShushiWindow = new SushiWindow();
+                        toShushiWindow.Show();
+                        Hide();
+                    }
                 }
                 else
-                    MessageBox.Show("hren'");
+                    MessageBox.Show("некорректные данные");
 
             }
 

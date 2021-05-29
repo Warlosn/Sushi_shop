@@ -70,7 +70,7 @@
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Height="30" VerticalAlignment="Top">
                     <StackPanel Orientation="Horizontal">
-                        <TextBox Text="{Binding SearchLine}"  Width="200" BorderThickness="1"/>
+                        <TextBox MaxLength="20" Text="{Binding SearchLine}"  Width="200" BorderThickness="1"/>
                         <Button Command="{Binding SearchProduct}" Content="Поиск"/>
                     </StackPanel>
                 </StackPanel>
@@ -100,7 +100,7 @@
                 <Grid Grid.Column="1" Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="{Binding AdminPanel , UpdateSourceTrigger=PropertyChanged}" 
+                        <ColumnDefinition Width= "{Binding AdminPanel , UpdateSourceTrigger=PropertyChanged}"
                                           />
                     </Grid.ColumnDefinitions>
 
@@ -122,9 +122,9 @@
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
 
-                                        <ToggleButton Command="{Binding DataContext.ShowComment, RelativeSource={RelativeSource AncestorType=Window}}" Style="{DynamicResource StylesToogle}"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" FontSize="24"  Foreground="White"  IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}">
+                                        <!--<ToggleButton Command="{Binding DataContext.ShowComment, RelativeSource={RelativeSource AncestorType=Window}}" Style="{DynamicResource StylesToogle}"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" FontSize="24"  Foreground="White"  IsChecked="{Binding Path=IsSelected, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}">
                                             <materialDesign:PackIcon Kind="Comment"  Margin="5"   Height="20" Width="20"/>
-                                        </ToggleButton>
+                                        </ToggleButton>-->
 
                                         <Image Grid.Column="0"  Source="{Binding product_bitmap}"></Image>
                                         <Label Grid.Row="1" Content="{Binding product_name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="20" HorizontalAlignment="Center" Foreground="Gray"/>

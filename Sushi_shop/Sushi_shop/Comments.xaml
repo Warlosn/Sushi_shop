@@ -46,7 +46,7 @@
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Width="300" Text="{Binding NewComment, UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="20" HorizontalAlignment="Left"/>
+            <TextBox Grid.Column="0" Width="300" MaxLength="20" Text="{Binding NewComment, UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="20" HorizontalAlignment="Left"/>
             <Button Command="{Binding addComment}"  Grid.Column="1" Width="50" Height="40" HorizontalAlignment="Right" Margin="0">
                 <materialDesign:PackIcon Kind="CommentAddOutline" Padding="0" Margin="0"/>
             </Button>

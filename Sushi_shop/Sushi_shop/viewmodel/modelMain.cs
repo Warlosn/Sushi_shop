@@ -65,7 +65,8 @@ namespace Sushi_shop.viewmodel
                 return _sortByPrice ??
                     (_sortByPrice = new Commands(obj =>
                     {
-                        
+                        ProductsList =
+                            new ObservableCollection<Products>(ProductsList.OrderBy(products => products.price));
                     }));
             }
         }
